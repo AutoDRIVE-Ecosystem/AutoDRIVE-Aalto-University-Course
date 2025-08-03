@@ -1,4 +1,4 @@
-# AutoDRIVE Aalto University Course
+# AutoDRIVE - Aalto University Course
 
 ![Github Stars](https://img.shields.io/github/stars/AutoDRIVE-Ecosystem/AutoDRIVE-Aalto-University-Course?style=flat&color=blue&label=stars&logo=github&logoColor=white)
 ![Github Forks](https://img.shields.io/github/forks/AutoDRIVE-Ecosystem/AutoDRIVE-Aalto-University-Course?style=flat&color=blue&label=forks&logo=github&logoColor=white)
