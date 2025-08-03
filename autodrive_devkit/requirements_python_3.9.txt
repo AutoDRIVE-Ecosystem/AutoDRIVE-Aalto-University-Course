@@ -1,0 +1,17 @@
+attrdict==2.0.1
+numpy==1.21.5
+pillow==9.0.1
+opencv-contrib-python==4.11.0.86
+eventlet==0.33.3
+Flask==1.1.1
+Flask-SocketIO==4.1.0
+python-socketio==4.2.0
+python-engineio==3.13.0
+greenlet==1.0.0
+gevent==21.1.2
+gevent-websocket==0.10.1
+Jinja2==3.0.3
+itsdangerous==2.0.1
+werkzeug==2.0.3
+setuptools==59.6.0
+transforms3d==0.4.2
