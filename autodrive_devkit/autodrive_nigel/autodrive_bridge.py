@@ -40,8 +40,8 @@ from threading import Thread # Thread-based parallelism
 
 import cv2 # OpenCV library for computer vision tasks
 
-# Python mudule imports
-from cv_bridge import CvBridge # ROS bridge for opencv library to handle images
+# Python module imports
+from cv_bridge import CvBridge # ROS bridge for OpenCV library to handle images
 from gevent import pywsgi # Pure-Python gevent-friendly WSGI server
 from geventwebsocket.handler import WebSocketHandler # Handler for WebSocket messages and lifecycle events
 import socketio # Socket.IO realtime client and server
@@ -384,7 +384,7 @@ def bridge(sid, data):
         publish_nigel_1_front_camera_image(nigel_1.front_camera_image)
         nigel_1.rear_camera_image = np.asarray(Image.open(BytesIO(base64.b64decode(data["V1 Rear Camera Image"]))))
         publish_nigel_1_rear_camera_image(nigel_1.rear_camera_image)
-        # Cooordinate transforms
+        # Coordinate transforms
         broadcast_transform(msg_transform, transform_broadcaster, "nigel_1", "world", nigel_1.position, nigel_1.orientation_quaternion) # Vehicle frame defined at center of rear axle
         broadcast_transform(msg_transform, transform_broadcaster, "left_encoder", "nigel_1", np.asarray([0.0, 0.12, 0.0]), quaternion_from_euler(0.0, 120*nigel_1.encoder_angles[0]%6.283, 0.0))
         broadcast_transform(msg_transform, transform_broadcaster, "right_encoder", "nigel_1", np.asarray([0.0, -0.12, 0.0]), quaternion_from_euler(0.0, 120*nigel_1.encoder_angles[1]%6.283, 0.0))
@@ -457,7 +457,7 @@ def main():
         history=QoSHistoryPolicy.KEEP_LAST, # Keep/store only up to last N samples
         depth=1 # Queue (buffer) size/depth (only honored if the “history” policy was set to “keep last”)
         )
-    cv_bridge = CvBridge() # ROS bridge object for opencv library to handle image data
+    cv_bridge = CvBridge() # ROS bridge object for OpenCV library to handle image data
     transform_broadcaster = tf2_ros.TransformBroadcaster(autodrive_bridge) # Initialize transform broadcaster
     publishers = {e.name: autodrive_bridge.create_publisher(e.type, e.topic, qos_profile)
                   for e in config.pub_sub_dict.publishers} # Publishers
@@ -486,8 +486,8 @@ def main():
     [autodrive_bridge.create_subscription(e.type, e.topic, callbacks[e.topic], qos_profile) for e in config.pub_sub_dict.subscribers] # Subscribers
 
     # If num_threads is not specified then num_threads will be multiprocessing.cpu_count() if it is implemented
-    # Otherwise it will use a single thread
-    executor = rclpy.executors.MultiThreadedExecutor() # Create executor to control which threads callbacks get executed in
+    # Otherwise, it will use a single thread
+    executor = rclpy.executors.MultiThreadedExecutor() # Create executor to control which thread callbacks get executed
     executor.add_node(autodrive_bridge) # Add node whose callbacks should be managed by this executor
 
     process = Thread(target=executor.spin, daemon=True) # Runs callbacks in the thread
